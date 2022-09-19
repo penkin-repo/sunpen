@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alexander Penkin</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="styleNew/anim-mm.css" />
+    <link rel="icon" href="img/logo-pen.svg" type="image/x-icon" />
+  </head>
+  <body>
+    <div id="foo">
+      <div class="modal-anim">
+        <div class="close-btn">✖</div>
+        <div class="modal-anim__container">
+          <h1>Добро пожаловать!</h1>
+          <p>
+            Я frontend-разработчи. (Адаптивная верстка, JavaScript, TypeScript, React, Redux)
+          </p>
+          <div class="modal-anim__links">
+            <a href="about.html">Обо мне</a>
+            <a href="portfolio.html">Мои работы</a>
+            <a href="contact.html">Связаться</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-anim">
+        <div id="scene" class="scene__main">
+          <div data-depth="0.8">
+            <span id="label"
+              >Александр Пенкин <br />
+              Frontend-разработчик</span
+            >
+          </div>
+
+          <div data-depth="0.4">
+            <img
+              style="
+                position: absolute;
+                width: 80%;
+                left: -300px;
+                bottom: 400px;
+                opacity: 0.1;
+              "
+              src="img/second-anim/lines.svg"
+              alt=""
+            />
+          </div>
+          <div data-depth="1.4">
+            <img
+              style="
+                position: absolute;
+                width: 10%;
+                left: 1000px;
+                bottom: 400px;
+              "
+              src="img/second-anim/cloud4.svg"
+              alt=""
+            />
+          </div>
+          <div data-depth="1.4">
+            <img
+              style="
+                position: absolute;
+                width: 15%;
+                left: 1700px;
+                bottom: 500px;
+              "
+              src="img/second-anim/cloud3.svg"
+              alt=""
+            />
+          </div>
+
+          <div data-depth="1.4">
+            <img
+              style="position: absolute; width: 10%; left: 300px; bottom: 500px"
+              src="img/second-anim/cloud2.svg"
+              alt=""
+            />
+          </div>
+          <div data-depth="3">
+            <img id="seagull" src="img/second-anim/seagull.svg" alt="" />
+          </div>
+          <div data-depth="1">
+            <img id="cloud-left" src="img/second-anim/cloud.svg" alt="" />
+          </div>
+          <div data-depth="0.8">
+            <img id="sea" src="img/second-anim/sea.svg" alt="" />
+          </div>
+
+          <div data-depth="0.8">
+            <img
+              style="
+                position: absolute;
+                width: 90%;
+                left: -300px;
+                bottom: -50px;
+                opacity: 0.05;
+              "
+              src="img/second-anim/wave2.svg"
+              alt=""
+            />
+          </div>
+
+          <div data-depth="0.6">
+            <img
+              style="
+                position: absolute;
+                width: 70%;
+                left: -200px;
+                bottom: -50px;
+                opacity: 0.2;
+              "
+              src="img/second-anim/wave2.svg"
+              alt=""
+            />
+          </div>
+
+          <div data-depth="0.4">
+            <img
+              style="
+                position: absolute;
+                width: 50%;
+                left: 0px;
+                bottom: 60px;
+                opacity: 0.2;
+              "
+              src="img/second-anim/wave1_1.svg"
+              alt=""
+            />
+          </div>
+
+          <div data-depth="0.6">
+            <img
+              id="lighthouseAndShadow"
+              src="img/second-anim/lighthouseAndShadow.svg"
+              alt=""
+            />
+          </div>
+
+          <div data-depth="0.2">
+            <img id="rock1" src="img/second-anim/rock1.svg" alt="" />
+          </div>
+        </div>
+
+        <div>
+          <button class="scene__btn">i</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- скрипты -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <script src="/js/anime.min.js"></script>
+    <script>
+      // анимации
+      var scene = document.getElementById("scene");
+      var parallaxInstance = new Parallax(scene);
+
+      // закрытие модального окна
+      const btnEl = document.querySelector(".scene__btn");
+      const modal = document.querySelector(".modal-anim");
+      const modalClose = document.querySelector(".close-btn");
+      const windowProject = document.querySelector("#foo");
+
+      windowProject.addEventListener("click", globalListenerOpenModal);
+
+      function closingModal() {
+        modal.classList.remove("slideInDown");
+        modal.classList.add("slideOutUp");
+        btnEl.innerHTML = "i";
+
+        windowProject.addEventListener("click", globalListenerOpenModal);
+        windowProject.removeEventListener("click", globalListenerCloseModal);
+      }
+
+      function openingModal() {
+        modal.classList.remove("slideOutUp");
+        modal.classList.add("slideInDown");
+        btnEl.innerHTML = "🠕";
+
+        windowProject.removeEventListener("click", globalListenerOpenModal);
+        windowProject.addEventListener("click", globalListenerCloseModal);
+      }
+
+      function globalListenerCloseModal(e) {
+        if (
+          e.target.closest(".modal-anim") === null ||
+          e.target.closest(".scene__btn") === null ||
+          e.target.closest(".close-btn") !== null
+        ) {
+          closingModal();
+        }
+      }
+
+      function globalListenerOpenModal(e) {
+        if (e.target.closest(".scene__btn") !== null) {
+          openingModal();
+        }
+      }
+    </script>
+  </body>
+</html>
