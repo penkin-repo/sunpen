@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("./fonts/cascadia/stylesheet.css");
+@import url("../fonts/stylesheet.css");
 html {
   width: 100vw;
 }
